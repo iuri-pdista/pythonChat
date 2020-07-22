@@ -10,12 +10,17 @@ except:
 while True:
     try:
         clientsocket, address = serverSocket.accept()
-        print(f"Connection from {address} has been established")
-        clientsocket.send(bytes("W&LC0M3 T0 T#& C#H4T", "utf-8"))
-        clientName = clientsocket.recv(15)
-        print(f"The address: {address} joined the server as: {clientName}")
+        while True:    
+            print(f"Connection from {address} has been established")
+            clientsocket.send(bytes("W&LC0M3 T0 T#& C#H4T", "utf-8"))
+            clientName = clientsocket.recv(15)
+            print(f"The address: {address} joined the server as: {clientName}")
+            while True:
+                serverSocket.send(bytes("Mensagem massa","utf-8"))
+                recvMesage = serverSocket.recv(1024)
+                print(recvMessage.decode("utf-8"))
     except:
-        print(Fore.red + 'Failed to connect with client ;-;(')
+        print("Failed to connect with client ;-;")
     clientsocket.close()
 serverSocket.close()
 
